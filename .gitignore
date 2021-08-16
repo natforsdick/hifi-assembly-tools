@@ -1,0 +1,4 @@
+# Logs, output and error files
+*.log
+*.out
+*.err
