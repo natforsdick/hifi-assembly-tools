@@ -40,3 +40,4 @@ echo "Starting hifiasm assembly for ${DATA} at " $date
 # Hi-C phasing with paired-end short reads in two FASTQ files
 hifiasm -o ${OUTPRE}-HiC.asm --h1 ${INHIC}${DATAHIC}R1.fastq.gz --h2 ${INHIC}${DATAHIC}R2.fastq.gz ${INDIR}${DATA} 2> test.log
 echo "Finished at " $date
+awk '/^S/{print ">"$2;print $3}' ${OUTPRE}-HiC.asm.hic.p_ctg.gfa > ${OUTPRE}-HiC.p_ctg.fa
