@@ -38,6 +38,7 @@ echo "Starting hifiasm assembly for ${DATA} at " $date
 hifiasm --primary -o ${OUTPRE} -t $SLURM_CPUS_PER_TASK ${INDIR}${DATA} 2> ${OUTPRE}.log
 
 awk '/^S/{print ">"$2;print $3}' ${OUTPRE}.bp.p_ctg.gfa > ${OUTPRE}.p_ctg.fa  # get primary contigs in FASTA format
+awk '/^S/{print ">"$2;print $3}' ${OUTPRE}.bp.a_ctg.gfa > ${OUTPRE}.a_ctg.fa  # get alternate contigs in FASTA format
 
 echo "Completed at " $date
 
