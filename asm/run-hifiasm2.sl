@@ -2,13 +2,12 @@
 
 #SBATCH --account ga03186
 #SBATCH --job-name hifiasm2
-#SBATCH --cpus-per-task 12
+#SBATCH --cpus-per-task=28 
 #SBATCH --mem 48G
 #SBATCH --time 01-03:00:00
 #SBATCH --output hifiasm2.%j.out
 #SBATCH --error hifiasm2.%j.err
 #SBATCH --profile=task
-#SBATCH --acctg-freq=300 # Collect data every 5 mins
 
 ##############
 # HIFIASM WITH HI-C
