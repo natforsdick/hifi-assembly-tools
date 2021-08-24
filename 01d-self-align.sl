@@ -3,12 +3,12 @@
 #SBATCH --job-name=self-self
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=00:10:00
-#SBATCH --mem=9G
+#SBATCH --time=00:05:00
+#SBATCH --mem=12G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=12
 
 # Created by Sarah Bailey, UoA
 # Modified by Nat Forsdick, 2021-08-24
