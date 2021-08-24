@@ -3,12 +3,12 @@
 #SBATCH --job-name=make-paf
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=02:00:00
+#SBATCH --time=00:30:00
 #SBATCH --mem=10G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
-#SBATCH --cpus-per-task=16
+#SBATCH --cpus-per-task=24
 
 # Created by Sarah Bailey, UoA
 # Modified by Nat Forsdick, 2021-08-24
@@ -24,12 +24,12 @@ module load minimap2/2.20-GCC-9.2.0
 
 #########
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm1-Canu/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm1-Canu/purge_dups/
+INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm/
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm/purge_dups/
 DATA=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
 #########
 
 cd $OUTDIR
 
-minimap2 -x map-hifi -t $SLURM_CPUS_PER_TASK ${INDIR}kaki-asm.contigs.fasta ${DATA}m54349U_210221_005741.fastq | gzip -c - > kaki-hifi-to-asm1-Canu.paf.gz
+minimap2 -x map-hifi -t $SLURM_CPUS_PER_TASK ${INDIR}kaki-hifiasm.p_ctg.fa ${DATA}m54349U_210221_005741.fastq | gzip -c - > kaki-hifi-to-asm2-hifiasm.paf.gz
 
