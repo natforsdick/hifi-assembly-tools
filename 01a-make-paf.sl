@@ -10,14 +10,24 @@
 #SBATCH --account=ga03186
 #SBATCH --cpus-per-task=16
 
+# Created by Sarah Bailey, UoA
+# Modified by Nat Forsdick, 2021-08-24
 
+# Step 01a in purge_dups pipeline
+# Mapping input HiFi data to reference genome to create a paf file
+
+#########
+# MODULES
 module purge
-
 module load minimap2/2.20-GCC-9.2.0 
+#########
 
+#########
+# PARAMS
 INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm1-Canu/
 OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm1-Canu/purge_dups/
 DATA=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
+#########
 
 cd $OUTDIR
 
