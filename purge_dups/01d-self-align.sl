@@ -25,9 +25,10 @@ module load minimap2/2.20-GCC-9.2.0
 
 #########
 # PARAMS
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm1-Canu/purge_dups
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm-p/purge_dups/
+PRI=asm2-hifiasm-p.p_ctg
 #########
 
 cd $OUTDIR
 # -x asm5: intra-specific asm-to-asm alignment
-minimap2 -x asm5 -t $SLURM_CPUS_PER_TASK -DP kaki-asm.contigs.split kaki-asm.contigs.split | gzip -c - > kaki-asm.contigs.split.self.paf.gz
+minimap2 -x asm5 -t $SLURM_CPUS_PER_TASK -DP ${PRI}.split ${PRI}.split | gzip -c - > ${PRI}.split.self.paf.gz
