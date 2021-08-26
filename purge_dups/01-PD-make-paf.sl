@@ -30,10 +30,11 @@ DATA=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
 PRE=asm2-hifiasm-p # PREFIX
 PRI=p_ctg
 ALT=a_ctg
-ROUND=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
+R1=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
+R2=02P-
 #########
 
 #mkdir -p $OUTDIR
 cd $OUTDIR
 
-minimap2 -x map-hifi -t $SLURM_CPUS_PER_TASK ${INDIR}${PRE}${PRI}.fa ${DATA}m54349U_210221_005741.fastq | gzip -c - > ${ROUND}${PRE}-mapped.paf.gz
+minimap2 -x map-hifi -t $SLURM_CPUS_PER_TASK ${INDIR}${PRE}${PRI}.fa ${DATA}m54349U_210221_005741.fastq | gzip -c - > ${R1}${PRE}-mapped.paf.gz

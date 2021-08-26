@@ -28,9 +28,10 @@ OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm-p/purge_dups/
 PRE=asm2-hifiasm-p # PREFIX
 PRI=p_ctg
 ALT=a_ctg
-ROUND=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
+R1=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
+R2=02P-
 #########
 
 cd $OUTDIR
 # -x asm5: intra-specific asm-to-asm alignment
-minimap2 -x asm5 -t $SLURM_CPUS_PER_TASK -DP ${ROUND}${PRE}.split ${ROUND}${PRE}.split | gzip -c - > ${ROUND}${PRE}.split.self.paf.gz
+minimap2 -x asm5 -t $SLURM_CPUS_PER_TASK -DP ${R1}${PRE}.split ${R1}${PRE}.split | gzip -c - > ${R1}${PRE}.split.self.paf.gz
