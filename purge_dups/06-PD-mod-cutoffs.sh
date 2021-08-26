@@ -14,8 +14,10 @@ PRE=asm2-hifiasm-p # PREFIX
 PRI=p_ctg
 ALT=a_ctg
 ROUND=02P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
+CUTOFFS="-l2 -m15 -u60"
 ##########
 
-${PURGE_DUPS}calcuts -m 16 -u 63 01P-${PRE}-PB.stat > ${ROUND}${PRE}-cutoffs
+echo $CUTOFFS
+${PURGE_DUPS}calcuts ${CUTOFFS} 01P-${PRE}-PB.stat > ${ROUND}${PRE}-cutoffs
 
 # Following this, you need to run steps 04-07 with $ROUND modified for new cutoffs.
