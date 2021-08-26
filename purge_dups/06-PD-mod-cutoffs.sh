@@ -17,6 +17,7 @@ ROUND=02P- # Designate cutoffs round - either default (01) or modified (02) and 
 CUTOFFS="-l2 -m15 -u60"
 ##########
 
+cd ${OUTDIR}
 echo $CUTOFFS
 ${PURGE_DUPS}calcuts ${CUTOFFS} 01P-${PRE}-PB.stat > ${ROUND}${PRE}-cutoffs
 
