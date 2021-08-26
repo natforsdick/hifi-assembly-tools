@@ -2,9 +2,9 @@
 
 #SBATCH --account ga03186
 #SBATCH --job-name hifiasm2
-#SBATCH --cpus-per-task=28 
-#SBATCH --mem 48G
-#SBATCH --time 01-03:00:00
+#SBATCH --cpus-per-task=4 # When starting this job, set to 4 CPU, then increase to match mem when OOM
+#SBATCH --mem 52G # When initially starting this job, set to 22 GB. Then when OOM, restart with 52 GB
+#SBATCH --time 00:30:00 # When starting this job, set to 1-:03:00:00, then change to 00:30:00 for final mem-intensive step
 #SBATCH --output hifiasm2.%j.out
 #SBATCH --error hifiasm2.%j.err
 #SBATCH --profile=task
