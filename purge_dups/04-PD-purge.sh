@@ -17,7 +17,7 @@ PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
 PRE=asm2-hifiasm-p # PREFIX
 PRI=p_ctg
 ALT=a_ctg
-ROUND=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
+ROUND=02P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 ##########
 
 cd $OUTDIR
