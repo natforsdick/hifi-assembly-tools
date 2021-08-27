@@ -26,3 +26,6 @@ ml load Python
 cd ${OUTDIR}
 
 python3 ${PURGE_DUPS}hist_plot.py -c ${R2}${PRE}-cutoffs ${R1}${PRE}-PB.stat ${R2}${PRE}-PB.cov.png
+
+# Run assemblathon stats
+/nesi/project/ga03186/scripts/Assemblathon_scripts/assemblathon_stats.pl ${R2}${PRE}-purged.fa > ${R2}${PRE}-purged.stats
