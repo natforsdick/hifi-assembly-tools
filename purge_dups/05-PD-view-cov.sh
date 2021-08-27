@@ -25,4 +25,4 @@ ml load Python
 
 cd ${OUTDIR}
 
-python3 ${PURGE_DUPS}hist_plot.py -c ${R1}${PRE}-cutoffs ${R1}${PRE}-PB.stat ${R1}${PRE}-PB.cov.png
+python3 ${PURGE_DUPS}hist_plot.py -c ${R2}${PRE}-cutoffs ${R1}${PRE}-PB.stat ${R2}${PRE}-PB.cov.png
