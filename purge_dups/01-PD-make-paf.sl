@@ -28,7 +28,7 @@ module load minimap2/2.20-GCC-9.2.0
 INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm-p/
 OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm-p/purge_dups/
 DATA=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
-PRE=asm2-hifiasm-p # PREFIX
+PRE=asm3-hic-hifiasm-p # PREFIX
 PRI=p_ctg
 ALT=a_ctg
 R1=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly

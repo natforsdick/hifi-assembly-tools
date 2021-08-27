@@ -3,12 +3,12 @@
 #SBATCH --job-name=self-self
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=00:05:00
-#SBATCH --mem=12G
+#SBATCH --time=00:03:00
+#SBATCH --mem=10G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
-#SBATCH --cpus-per-task=12
+#SBATCH --cpus-per-task=16
 
 # Purge_dups pipeline
 # Created by Sarah Bailey, UoA
