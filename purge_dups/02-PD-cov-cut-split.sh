@@ -36,5 +36,5 @@ elif [ "$1" == "ALT" ]; then
   
   ${PURGE_DUPS}calcuts ${R1}${PRE}-${ALT}-PB.stat > ${R1}${PRE}-${ALT}-cutoffs 2> ${R1}${PRE}-${ALT}-calcults.log
 
-  ${PURGE_DUPS}split_fa ${INDIR}${PRE}.${ALT}.fa > ${R1}${PRE}-${ALT}.split
+  ${PURGE_DUPS}split_fa ${INDIR}${R1}${PRE}.${ALT}.fa > ${R1}${PRE}-${ALT}.split
 fi
