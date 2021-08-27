@@ -9,10 +9,10 @@
 ##########
 # PARAMS
 ##########
-INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm-p/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm-p/purge_dups/
+INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/purge_dups/
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-PRE=asm2-hifiasm-p- # PREFIX
+PRE=asm3-hic-hifiasm-p- # PREFIX
 PRI=p_ctg
 ALT=a_ctg
 R1=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
