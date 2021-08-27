@@ -25,6 +25,10 @@ if [ "$1" == "PRI" ]; then
 # step 02a: Produce PB.base.cov and PB.stat files
 ${PURGE_DUPS}pbcstat ${R1}${PRE}-${PRI}-mapped.paf.gz
 
+mv PB.stat ${R1}${PRE}-${PRI}-PB.stat
+mv PB.base.cov ${R1}${PRE}-${PRI}-PB.base.cov
+mv PB.cov.wig ${R1}${PRE}-${PRI}-PB.cov.wig
+
 ## step 02b: generate default cutoffs
 ${PURGE_DUPS}calcuts ${R1}${PRE}-${PRI}-PB.stat > ${R1}${PRE}-${PRI}-cutoffs 2> ${R1}${PRE}-${PRI}-calcults.log
 
@@ -33,6 +37,10 @@ ${PURGE_DUPS}split_fa ${INDIR}${PRE}.${PRI}.fa > ${R1}${PRE}-${PRI}.split
 
 elif [ "$1" == "ALT" ]; then
   ${PURGE_DUPS}pbcstat ${R1}${PRE}-${ALT}-merged-mapped.paf.gz
+
+  mv PB.stat ${R1}${PRE}-${ALT}-PB.stat
+  mv PB.base.cov ${R1}${PRE}-${ALT}-PB.base.cov
+  mv PB.cov.wig ${R1}${PRE}-${ALT}-PB.cov.wig
   
   ${PURGE_DUPS}calcuts ${R1}${PRE}-${ALT}-PB.stat > ${R1}${PRE}-${ALT}-cutoffs 2> ${R1}${PRE}-${ALT}-calcults.log
 
