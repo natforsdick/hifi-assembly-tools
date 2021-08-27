@@ -2,9 +2,9 @@
 
 #SBATCH --account ga03186
 #SBATCH --job-name hifiasm2
-#SBATCH --cpus-per-task=4 # When starting this job, set to 4 CPU, then increase to match mem when OOM
-#SBATCH --mem 52G # When initially starting this job, set to 22 GB. Then when OOM, restart with 52 GB
-#SBATCH --time 00:30:00 # When starting this job, set to 1-:03:00:00, then change to 00:30:00 for final mem-intensive step
+#SBATCH --cpus-per-task=24 # When starting this job, set to 24 CPU, then increase to match mem when OOM
+#SBATCH --mem 50G # When initially starting this job, set to 22 GB. Then when OOM, restart with 50 GB
+#SBATCH --time 00:25:00 # When starting this job, set to 04:00:00, then change to 00:30:00 for final mem-intensive step
 #SBATCH --output hifiasm2.%j.out
 #SBATCH --error hifiasm2.%j.err
 #SBATCH --profile=task
@@ -37,7 +37,7 @@ cd $OUTDIR
 echo "Starting hifiasm assembly for ${DATA} at " $date
 
 # Hi-C phasing with paired-end short reads in two FASTQ files
-hifiasm --primary -o ${OUTPRE}.asm --h1 ${INHIC}${DATAHIC}R1.fastq.gz --h2 ${INHIC}${DATAHIC}R2.fastq.gz ${INDIR}${DATA} 2> ${OUTPRE}.log
+hifiasm --primary -t $SLURM_CPUS_PER_TASK -o ${OUTPRE}.asm --h1 ${INHIC}${DATAHIC}R1.fastq.gz --h2 ${INHIC}${DATAHIC}R2.fastq.gz ${INDIR}${DATA} 2> ${OUTPRE}.log
 echo "Finished at " $date
 
 awk '/^S/{print ">"$2;print $3}' ${OUTPRE}.asm.hic.p_ctg.gfa > ${OUTPRE}.p_ctg.fa
