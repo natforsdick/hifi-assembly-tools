@@ -3,12 +3,12 @@
 #SBATCH --job-name=make-paf
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=00:30:00
-#SBATCH --mem=10G
+#SBATCH --time=00:12:00
+#SBATCH --mem=8G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
-#SBATCH --cpus-per-task=24
+#SBATCH --cpus-per-task=32
 
 # Purge_dups pipeline
 # Created by Sarah Bailey, UoA
