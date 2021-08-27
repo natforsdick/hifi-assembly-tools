@@ -11,7 +11,7 @@
 INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm-p/
 OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm-p/purge_dups/
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-PRE=asm2-hifiasm-p # PREFIX
+PRE=asm2-hifiasm-p- # PREFIX
 PRI=p_ctg
 ALT=a_ctg
 R1=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
@@ -21,10 +21,10 @@ R2=02P-
 cd $OUTDIR
 
 # step 02a: Produce PB.base.cov and PB.stat files
-${PURGE_DUPS}pbcstat ${R1}${PRE}-mapped.paf.gz
+${PURGE_DUPS}pbcstat ${R1}${PRE}${ALT}-mapped.paf.gz
 
 ## step 02b: generate default cutoffs
-${PURGE_DUPS}calcuts ${R1}${PRE}-PB.stat > ${R1}${PRE}-cutoffs 2> ${R1}${PRE}-calcults.log
+${PURGE_DUPS}calcuts ${R1}${PRE}${ALT}-PB.stat > ${R1}${PRE}${ALT}-cutoffs 2> ${R1}${PRE}${ALT}-calcults.log
 
 ## step 02c: split the assembly 
-${PURGE_DUPS}split_fa ${INDIR}${PRE}.${PRI}.fa > ${R1}${PRE}.split
+${PURGE_DUPS}split_fa ${INDIR}${PRE}${ALT}.fa > ${R1}${PRE}${ALT}.split
