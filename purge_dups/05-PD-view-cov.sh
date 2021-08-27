@@ -10,11 +10,12 @@
 # PARAMS
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/scripts/
 OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm2-hifiasm-p/purge_dups/
-PRE=asm2-hifiasm-p # PREFIX
+PRE=asm2-hifiasm-p- # PREFIX
 PRI=p_ctg
 ALT=a_ctg
 R1=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 R2=02P-
+ASMSTATS=/nesi/project/ga03186/scripts/Assemblathon_scripts/assemblathon_stats.pl
 ##########
 
 ##########
@@ -25,7 +26,31 @@ ml load Python
 
 cd ${OUTDIR}
 
-python3 ${PURGE_DUPS}hist_plot.py -c ${R2}${PRE}-cutoffs ${R1}${PRE}-PB.stat ${R2}${PRE}-PB.cov.png
+if [ "$1" == "PRI" ]; then
 
-# Run assemblathon stats
-/nesi/project/ga03186/scripts/Assemblathon_scripts/assemblathon_stats.pl ${R2}${PRE}-purged.fa > ${R2}${PRE}-purged.stats
+  if [ "$2" == "R1" ]; then
+    python3 ${PURGE_DUPS}hist_plot.py -c ${R1}${PRE}${PRI}-cutoffs ${R1}${PRE}${PRI}-PB.stat ${R1}${PRE}${PRI}-PB.cov.png
+
+    # Run assemblathon stats
+    $ASMSTATS ${R1}${PRE}${PRI}-purged.fa > ${R1}${PRE}${PRI}-purged.stats
+
+  elif [ "$2" == "R2" ]; then
+    python3 ${PURGE_DUPS}hist_plot.py -c ${R2}${PRE}${PRI}-cutoffs ${R1}${PRE}${PRI}-PB.stat ${R2}${PRE}${PRI}-PB.cov.png
+
+    $ASMSTATS ${R2}${PRE}${PRI}-purged.fa > ${R2}${PRE}${PRI}-purged.stats
+  fi
+
+elif [ "$1" == "ALT" ]; then
+
+  if [ "$2" == "R1" ]; then
+    python3 ${PURGE_DUPS}hist_plot.py -c ${R1}${PRE}${ALT}-cutoffs ${R1}${PRE}${ALT}-PB.stat ${R1}${PRE}${ALT}-PB.cov.png
+
+    # Run assemblathon stats
+    $ASMSTATS ${R1}${PRE}${ALT}-purged.fa > ${R1}${PRE}${ALT}-purged.stats
+
+  elif [ "$2" == "R2" ]; then
+    python3 ${PURGE_DUPS}hist_plot.py -c ${R2}${PRE}${ALT}-cutoffs ${R1}${PRE}${ALT}-PB.stat ${R2}${PRE}${ALT}-PB.cov.png
+
+    $ASMSTATS ${R2}${PRE}${ALT}-purged.fa > ${R2}${PRE}${ALT}-purged.stats
+  fi
+fi
