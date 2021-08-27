@@ -39,9 +39,9 @@ R2=02P-
 cd $OUTDIR
 
 if [ "$1" == "PRI" ]; then
-  minimap2 -x map-hifi -t $SLURM_CPUS_PER_TASK ${INDIR}${PRE}${PRI}.hap-merged.fa \
+  minimap2 -x map-hifi -t $SLURM_CPUS_PER_TASK ${INDIR}${PRE}${PRI}.fa \
   ${DATA}m54349U_210221_005741.fastq | \
-  gzip -c - > ${R1}${PRE}${PRI}-merged-mapped.paf.gz
+  gzip -c - > ${R1}${PRE}${PRI}-mapped.paf.gz
  
 elif [ "$1" == "ALT" ]; then
   minimap2 -x map-hifi -t $SLURM_CPUS_PER_TASK ${INDIR}${PRE}${ALT}.hap-merged.fa \
