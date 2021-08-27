@@ -37,4 +37,4 @@ R2=02P-
 #mkdir -p $OUTDIR
 cd $OUTDIR
 
-minimap2 -x map-hifi -t $SLURM_CPUS_PER_TASK ${INDIR}${PRE}${PRI}.fa ${DATA}m54349U_210221_005741.fastq | gzip -c - > ${R1}${PRE}-mapped.paf.gz
+minimap2 -x map-hifi -t $SLURM_CPUS_PER_TASK ${INDIR}${PRE}.${PRI}.fa ${DATA}m54349U_210221_005741.fastq | gzip -c - > ${R1}${PRE}-mapped.paf.gz
