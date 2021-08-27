@@ -22,8 +22,8 @@ R2=02P-
 cd $OUTDIR
 
 # Rename outputs
-mv purged.fa ${R1}${PRE}-purged.fa
-mv hap.fa ${R1}${PRE}-hap.fa
+mv purged.fa ${R2}${PRE}-purged.fa
+mv hap.fa ${R2}${PRE}-hap.fa
 
 # Step 05: Merge purged haplotigs (hap.fa) with the alternate draft assembly
-cat ${R1}${PRE}-hap.fa ${INDIR}${PRE}.${ALT}.fa > ${INDIR}${R1}${PRE}.${ALT}.hap-merged.fa
+cat ${R2}${PRE}-hap.fa ${INDIR}${PRE}.${ALT}.fa > ${INDIR}${R2}${PRE}.${ALT}.hap-merged.fa
