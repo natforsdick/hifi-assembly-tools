@@ -1,9 +1,9 @@
 #!/bin/bash -e
 #SBATCH -A ga03186
 #SBATCH -J flye
-#SBATCH --time=03:00:00
-#SBATCH -c 42
-#SBATCH --mem=60G
+#SBATCH --time=02:00:00
+#SBATCH -c 32
+#SBATCH --mem=70G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --mail-type=FAIL,END
 #SBATCH --output %x.%j.out
