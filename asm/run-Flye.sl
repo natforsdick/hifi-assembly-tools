@@ -2,8 +2,8 @@
 #SBATCH -A ga03186
 #SBATCH -J flye
 #SBATCH --time=02:00:00
-#SBATCH -c 32
-#SBATCH --mem=80G
+#SBATCH -c 46
+#SBATCH --mem=66G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --mail-type=FAIL,END
 #SBATCH --output %x.%j.out
