@@ -58,5 +58,5 @@ mv PB.cov.wig ${R1}${PRE}-PB.cov.wig
 ${PURGE_DUPS}calcuts ${R1}${PRE}-PB.stat > ${R1}${PRE}-cutoffs 2> ${R1}${PRE}-calcults.log
 
 ## step 02c: split the assembly
-${PURGE_DUPS}split_fa ${INDIR}${PRE}.fa > ${R1}${PRE}.split
+${PURGE_DUPS}split_fa ${INDIR}${PRE}.fasta > ${R1}${PRE}.split
 fi
