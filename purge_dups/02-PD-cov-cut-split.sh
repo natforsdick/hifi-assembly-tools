@@ -9,14 +9,14 @@
 
 #########
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/purge_dups/
+INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/purge_dups/
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-PRE=asm3-hic-hifiasm-p # PREFIX
+PRE=assembly # PREFIX
 PRI=p_ctg
 ALT=a_ctg
-R1=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
-R2=02P-
+R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
+R2=02-
 #########
 
 cd $OUTDIR
@@ -45,4 +45,18 @@ elif [ "$1" == "ALT" ]; then
   ${PURGE_DUPS}calcuts ${R1}${PRE}-${ALT}-PB.stat > ${R1}${PRE}-${ALT}-cutoffs 2> ${R1}${PRE}-${ALT}-calcults.log
 
   ${PURGE_DUPS}split_fa ${INDIR}${R1}${PRE}.${ALT}.hap-merged.fa > ${R1}${PRE}-${ALT}.split
+
+else
+# step 02a: Produce PB.base.cov and PB.stat files
+${PURGE_DUPS}pbcstat ${R1}${PRE}-mapped.paf.gz
+
+mv PB.stat ${R1}${PRE}-PB.stat
+mv PB.base.cov ${R1}${PRE}-PB.base.cov
+mv PB.cov.wig ${R1}${PRE}-PB.cov.wig
+
+## step 02b: generate default cutoffs
+${PURGE_DUPS}calcuts ${R1}${PRE}-PB.stat > ${R1}${PRE}-cutoffs 2> ${R1}${PRE}-calcults.log
+
+## step 02c: split the assembly
+${PURGE_DUPS}split_fa ${INDIR}${PRE}.fa > ${R1}${PRE}.split
 fi

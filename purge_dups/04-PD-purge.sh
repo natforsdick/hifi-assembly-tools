@@ -12,14 +12,14 @@
 ##########
 # PARAMS
 ##########
-INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/purge_dups/
+INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/purge_dups/
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-PRE=asm3-hic-hifiasm-p # PREFIX
+PRE=assembly # PREFIX
 PRI=p_ctg
 ALT=a_ctg
-R1=01P-
-R2=02P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
+R1=01-
+R2=02- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 ##########
 
 cd $OUTDIR
@@ -50,4 +50,19 @@ elif [ "$1" == "ALT" ]; then
 
     ${PURGE_DUPS}get_seqs -e ${R2}${PRE}${ALT}-dups.bed ${INDIR}${R2}${PRE}.${ALT}.hap-merged.fa
   fi
+
+else
+if [ "$1" == "R1" ]; then
+    # Step 04a: Purge haplotigs and overlaps
+    ${PURGE_DUPS}purge_dups -2 -T ${R1}${PRE}-cutoffs -c ${R1}${PRE}-PB.base.cov ${R1}${PRE}.split.self.paf.gz > ${R1}${PRE}-dups.bed 2> ${R1}${PRE}-purge_dups.log
+
+    # Step 04b: Get purged primary and haplotig sequences from draft assembly
+    ${PURGE_DUPS}get_seqs -e ${R1}${PRE}-dups.bed ${INDIR}${PRE}.fa
+
+  elif [ "$1" == "R2" ]; then
+    ${PURGE_DUPS}purge_dups -2 -T ${R2}${PRE}-cutoffs -c ${R1}${PRE}-PB.base.cov ${R1}${PRE}.split.self.paf.gz > ${R2}${PRE}-dups.bed 2> ${R2}${PRE}-purge_dups.log
+
+    ${PURGE_DUPS}get_seqs -e ${R2}${PRE}-dups.bed ${INDIR}${PRE}.fa
+  fi
+
 fi

@@ -9,12 +9,12 @@
 ##########
 # PARAMS
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/scripts/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/purge_dups/
-PRE=asm3-hic-hifiasm-p- # PREFIX
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/purge_dups/
+PRE=assembly # PREFIX
 PRI=p_ctg
 ALT=a_ctg
-R1=01P- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
-R2=02P-
+R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
+R2=02-
 ASMSTATS=/nesi/project/ga03186/scripts/Assemblathon_scripts/assemblathon_stats.pl
 ##########
 
@@ -60,5 +60,23 @@ elif [ "$1" == "ALT" ]; then
     python3 ${PURGE_DUPS}hist_plot.py -c ${R2}${PRE}${ALT}-cutoffs ${R1}${PRE}${ALT}-PB.stat ${R2}${PRE}${ALT}-PB.cov.png
 
     $ASMSTATS ${R2}${PRE}${ALT}-purged.fa > ${R2}${PRE}${ALT}-purged.stats
+  fi
+
+else
+  if [ "$1" == "R1" ]; then
+
+    mv purged.fa ${R1}${PRE}purged.fa
+    mv hap.fa ${R1}${PRE}hap.fa
+    python3 ${PURGE_DUPS}hist_plot.py -c ${R1}${PRE}-cutoffs ${R1}${PRE}-PB.stat ${R1}${PRE}-PB.cov.png
+
+    # Run assemblathon stats
+    $ASMSTATS ${R1}${PRE}-purged.fa > ${R1}${PRE}-purged.stats
+
+  elif [ "$1" == "R2" ]; then
+    mv purged.fa ${R2}${PRE}-purged.fa
+    mv hap.fa ${R2}${PRE}-hap.fa
+    python3 ${PURGE_DUPS}hist_plot.py -c ${R2}${PRE}-cutoffs ${R1}${PRE}-PB.stat ${R2}${PRE}-PB.cov.png
+
+    $ASMSTATS ${R2}${PRE}-purged.fa > ${R2}${PRE}-purged.stats
   fi
 fi
