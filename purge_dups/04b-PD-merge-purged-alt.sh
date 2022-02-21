@@ -28,7 +28,7 @@ mv purged.fa ${R1}${PRE}${PRI}-purged.fa
 mv hap.fa ${R1}${PRE}${PRI}-hap.fa
 
 # Step 05: Merge purged haplotigs (hap.fa) with the alternate draft assembly
-cat ${R1}${PRE}-${PRI}-hap.fa ${INDIR}${PRE}.${PRI}.fa > ${INDIR}${R1}${PRE}.${PRI}.hap-merged.fa
+cat ${R1}${PRE}-${PRI}-hap.fa ${INDIR}${PRE}.${ALT}.fa > ${INDIR}${R1}${PRE}.${PRI}.hap-merged.fa
 
 elif [ "$1" == "ALT" ]; then
 

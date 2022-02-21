@@ -9,8 +9,8 @@
 ##########
 # PARAMS
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/purge_dups/
-PRE=assembly # PREFIX
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/purge_dups/
+PRE=primary.genome.scf # PREFIX
 PRI=p_ctg
 ALT=a_ctg
 R1=01-

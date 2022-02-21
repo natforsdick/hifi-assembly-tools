@@ -24,8 +24,8 @@ module load minimap2/2.20-GCC-9.2.0
 
 #########
 # PARAMS
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/purge_dups/
-PRE=assembly # PREFIX
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/purge_dups/
+PRE=primary.genome.scf # PREFIX
 PRI=p_ctg
 ALT=a_ctg
 R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly

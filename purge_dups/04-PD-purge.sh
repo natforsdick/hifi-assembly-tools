@@ -12,10 +12,10 @@
 ##########
 # PARAMS
 ##########
-INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/purge_dups/
+INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/CA.mr.99.17.15.0.02/
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/purge_dups/
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-PRE=assembly # PREFIX
+PRE=primary.genome.scf # PREFIX
 PRI=p_ctg
 ALT=a_ctg
 R1=01-

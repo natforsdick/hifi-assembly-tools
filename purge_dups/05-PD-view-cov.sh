@@ -9,8 +9,8 @@
 ##########
 # PARAMS
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/scripts/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm4-flye/purge_dups/
-PRE=assembly # PREFIX
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/purge_dups/
+PRE=primary.genome.scf # PREFIX
 PRI=p_ctg
 ALT=a_ctg
 R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
@@ -65,8 +65,8 @@ elif [ "$1" == "ALT" ]; then
 else
   if [ "$1" == "R1" ]; then
 
-    mv purged.fa ${R1}${PRE}purged.fa
-    mv hap.fa ${R1}${PRE}hap.fa
+    mv purged.fa ${R1}${PRE}-purged.fa
+    mv hap.fa ${R1}${PRE}-hap.fa
     python3 ${PURGE_DUPS}hist_plot.py -c ${R1}${PRE}-cutoffs ${R1}${PRE}-PB.stat ${R1}${PRE}-PB.cov.png
 
     # Run assemblathon stats
