@@ -7,3 +7,4 @@
 *.js
 agb_output/
 assembly/.ipynb_checkpoints/
+*.r
