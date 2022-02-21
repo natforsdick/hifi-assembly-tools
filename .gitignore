@@ -5,6 +5,6 @@
 *.h5
 *.png
 *.js
-./agb_output/
-./assembly/.ipynb_checkpoints/
+agb_output/
+assembly/.ipynb_checkpoints/
 *.r
