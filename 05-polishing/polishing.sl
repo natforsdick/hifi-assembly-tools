@@ -2,9 +2,9 @@
 #SBATCH -A ga03186
 #SBATCH -J kaki-polish
 #SBATCH --cpus-per-task=36
-#SBATCH --mem=44G
+#SBATCH --mem=32G
 #SBATCH --partition=large
-#SBATCH --time=04:00:00
+#SBATCH --time=02:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --output %x.%j.out
@@ -13,10 +13,10 @@
 
 #######
 # PARAMS
-asmdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/01-purge-dups/
-fo=01P-asm3-hic-hifiasm-p-p_ctg-purged # testing with subset
+asmdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/01-purge-dups/
+fo=01-primary.genome.scf-purged
 datadir=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
-outdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-polishing/
+outdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/03-polishing/
 ######
 
 ml purge
