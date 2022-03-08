@@ -3,7 +3,7 @@
 #SBATCH --job-name=minimap-HiFi
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=00:45:00 #45m
+#SBATCH --time=01:00:00 #45m
 #SBATCH --mem=6G # 6G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
@@ -28,10 +28,10 @@ module load minimap2/2.20-GCC-9.2.0
 # PARAMS
 #########
 DIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/02-minimap/
-REFDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/01-purge-dups/
-REF=01P-asm3-hic-hifiasm-p-p_ctg-purged
+REFDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/
+REF=asm3-hic-hifiasm-p.p_ctg
 HIFIDIR=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
-HIFI=m54349U_210221_005741.fastq
+HIFI=m54349U_210221_005741.fastq.gz
 #########
 
 cd $DIR
@@ -39,11 +39,11 @@ cd $DIR
 echo Indexing ${REF}
 
 # To index reference genome the first time you run this - can then just call the index ref.mmi following this
-#minimap2 -t $SLURM_CPUS_PER_TASK -d ${REF}.mmi ${REFDIR}${REF}.fa
+minimap2 -t $SLURM_CPUS_PER_TASK -d ${REF}.mmi ${REFDIR}${REF}.fa
 
 echo Aligning ${HIFI} against ${REF}
 # To map HiFi reads to assembly
-minimap2 -x map-pb -t $SLURM_CPUS_PER_TASK ${REF}.mmi ${HIFIDIR}${HIFI} > ${REF}-pb.paf
+minimap2 -ax map-hifi -t $SLURM_CPUS_PER_TASK ${REF}.mmi ${HIFIDIR}${HIFI} > ${REF}-pb.paf
 
 echo Collecting stats
 $HOME/bin/k8 /nesi/project/ga03186/HiFi-scripts/paftools.js stat ${REF}-pb.paf > ${REF}-pb-stat.out
