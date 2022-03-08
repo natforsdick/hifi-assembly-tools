@@ -13,10 +13,10 @@
 
 #######
 # PARAMS
-asmdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/01-purge-dups/
-fo=01-primary.genome.scf-purged
+asmdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-polishing/
+fo=01P-asm3-hic-hifiasm-p-p_ctg-purged.cns
 datadir=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
-outdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/03-polishing/
+outdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm-hic-hifiasm-p/03-polishing/
 ######
 
 ml purge
@@ -39,11 +39,11 @@ date
 echo "samtools view -F0x900 ${fo}.bam | wtpoa-cns -t $SLURM_CPUS_PER_TASK \
 -d ${asmdir}${fo}.fa -i - -fo ${fo}.cns.fa"
 samtools view -F0x900 ${fo}.bam | wtpoa-cns -t $SLURM_CPUS_PER_TASK \
--d ${asmdir}${fo}.fa -i - -fo ${fo}.cns.fa
+-d ${asmdir}${fo}.fa -i - -fo ${fo}.pol2.fa
 
 date
-echo "bwa index ${fo}.cns.fa"
-bwa index ${fo}.cns.fa
+echo "bwa index ${fo}.pol2.fa"
+bwa index ${fo}.pol2.fa
 
 # If you wanted to do this with short-read data (probably not recommended with HiFi, as you
 # may incur mismapping across repetitive regions from Illumina)≈
