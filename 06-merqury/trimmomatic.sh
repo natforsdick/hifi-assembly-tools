@@ -2,10 +2,10 @@
 
 #SBATCH --account ga03048
 #SBATCH --job-name trimmomatic
-#SBATCH --time 06:00:00
-#SBATCH --mem=24G
+#SBATCH --time 01:40:00
+#SBATCH --mem=10G
 #SBATCH --output=%x-%j.out
-#SBATCH --cpus-per-task=24
+#SBATCH --cpus-per-task=12
 #SBATCH --error=%x-%j.err
 #SBATCH --profile=task
 
