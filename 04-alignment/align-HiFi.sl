@@ -4,7 +4,7 @@
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
 #SBATCH --time=01:00:00 #45m
-#SBATCH --mem=12G # 6G
+#SBATCH --mem=20G # 6G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
