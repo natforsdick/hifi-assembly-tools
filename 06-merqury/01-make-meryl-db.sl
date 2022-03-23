@@ -1,8 +1,8 @@
 #!/bin/bash -e
 #SBATCH --account ga03186
-#SBATCH --job-name 01-make-meryl
-#SBATCH --time 00:40:00 # could need a couple of hours per fastq
-#SBATCH --mem=1G # will prob need at least 24
+#SBATCH --job-name make-meryl
+#SBATCH --time 00:30:00 # could need a couple of hours per fastq
+#SBATCH --mem=48G # will prob need at least 24
 #SBATCH --cpus-per-task=32
 #SBATCH --array=1-2
 #SBATCH --output %x.%A.%a.out
@@ -14,15 +14,15 @@
 ##########
 k=20
 genome=kaki
-indir=/nesi/nobackup/ga03048/correction/trimmomatic/
-outdir=/nesi/nobackup/ga03048/assemblies/hifiasm/05-merqury/
+indir=/nesi/nobackup/ga03186/Kaki-HiSeq/trimmomatic/
+outdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm-stats/merqury/
 ##########
 
 cd $indir
 
 # call samplist from file, and pass to array
 SAMPLE_LIST=($(<input-fastq-list.txt))
-SAMPLE=${SAMPLE_LIST[${SLURM_ARRAY_TASK_ID}]}
+SAMPLE=${SAMPLE_LIST[${SLURM_ARRAY_TASK_ID}+1]}
 
 filename=$(basename "$SAMPLE") 
 filename=${filename%.*} 
