@@ -1,9 +1,9 @@
 #!/bin/bash -e
 #SBATCH --account ga03186
 #SBATCH --job-name make-meryl
-#SBATCH --time 00:30:00 # could need a couple of hours per fastq
-#SBATCH --mem=48G # will prob need at least 24
-#SBATCH --cpus-per-task=32
+#SBATCH --time 00:10:00 # could need a couple of hours per fastq
+#SBATCH --mem=40G # will prob need at least 24
+#SBATCH --cpus-per-task=34
 #SBATCH --array=1-2
 #SBATCH --output %x.%A.%a.out
 #SBATCH --error %x.%A.%a.err
