@@ -2,9 +2,9 @@
 
 #SBATCH -A ga03186
 #SBATCH -J fmlrc2
-#SBATCH --time 1-00:00:00 # 
-#SBATCH --mem 40G # 
-#SBATCH --cpus-per-task 24 # 
+#SBATCH --time 02:00:00 # 
+#SBATCH --mem 25G # 
+#SBATCH --cpus-per-task 4 # 
 #SBATCH	--error=%x.%j.err
 #SBATCH	--out=%x.%j.out
 #SBATCH	--profile=task
