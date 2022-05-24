@@ -1,7 +1,7 @@
 #!/bin/bash -e 
 #SBATCH -J bam2fastq   
 #SBATCH -A ga03186     
-#SBATCH --time=00:10:00                  
+#SBATCH --time=03:00:00                  
 #SBATCH --mem=6G              
 #SBATCH --cpus-per-task=2
 #SBATCH --output %x.%j.out
