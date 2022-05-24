@@ -3,7 +3,7 @@
 #SBATCH --job-name=minimap-HiFi
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=01:00:00 #45m
+#SBATCH --time=02:00:00 #45m
 #SBATCH --mem=20G # 6G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
@@ -39,11 +39,22 @@ cd $DIR
 echo Indexing ${REF}
 
 # To index reference genome the first time you run this - can then just call the index ref.mmi following this
-minimap2 -t $SLURM_CPUS_PER_TASK -d ${REF}.mmi ${REFDIR}${REF}.fa
+#minimap2 -t $SLURM_CPUS_PER_TASK -d ${REF}.mmi ${REFDIR}${REF}.fa
 
 echo Aligning ${HIFI} against ${REF}
 # To map HiFi reads to assembly
-minimap2 -ax map-hifi -t $SLURM_CPUS_PER_TASK ${REF}.mmi ${HIFIDIR}${HIFI} > ${REF}-pb.paf
+minimap2 -ax map-hifi -t $SLURM_CPUS_PER_TASK ${REF}.mmi ${HIFIDIR}${HIFI} > ${REF}-pb.sam
 
-echo Collecting stats
-$HOME/bin/k8 /nesi/project/ga03186/HiFi-scripts/paftools.js stat ${REF}-pb.paf > ${REF}-pb-stat.out
+echo Converting to bam
+ml SAMtools/1.13-GCC-9.2.0
+samtools view -bS -@ 12 ${REF}-pb.sam > ${REF}-pb.bam
+
+echo getting stats
+samtools coverage ${REF}-pb.bam -o ${REF}-pb-cov.txt
+samtools stats -@ 12 ${REF}-pb.bam > ${REF}-bp-stats.txt
+
+echo plotting stats
+plot-bamstats -p ${REF}-pb-stats ${REF}-bp-stats.txt
+
+#echo Collecting stats
+#$HOME/bin/k8 /nesi/project/ga03186/HiFi-scripts/paftools.js stat ${REF}-pb.paf > ${REF}-pb-stat.out
