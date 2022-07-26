@@ -57,4 +57,4 @@ echo plotting stats
 plot-bamstats -p ${REF}-pb-stats ${REF}-bp-stats.txt
 
 #echo Collecting stats
-#$HOME/bin/k8 /nesi/project/ga03186/HiFi-scripts/paftools.js stat ${REF}-pb.paf > ${REF}-pb-stat.out
+#$HOME/bin/k8 /nesi/project/ga03186/kaki-genome-assembly/QC/alignment/paftools.js stat ${REF}-pb.paf > ${REF}-pb-stat.out

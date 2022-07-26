@@ -42,4 +42,4 @@ echo Aligning ${HISEQ} against ${REF}
 # To map HiFi reads to assembly
 minimap2 -x sr -t $SLURM_CPUS_PER_TASK ${REF}.mmi ${HISEQDIR}${HISEQ}${R1} ${HISEQDIR}${HISEQ}${R2} > ${REF}-HiSeq.paf
 
-$HOME/bin/k8 /nesi/project/ga03186/HiFi-scripts/paftools.js stat ${REF}-HiSeq.paf > ${REF}-HiSeq-stat.out
+$HOME/bin/k8 /nesi/project/ga03186/kaki-genome-assembly/QC/alignment/paftools.js stat ${REF}-HiSeq.paf > ${REF}-HiSeq-stat.out
