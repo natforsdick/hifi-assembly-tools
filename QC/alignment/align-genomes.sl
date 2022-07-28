@@ -20,7 +20,7 @@ module purge
 module load minimap2/2.20-GCC-9.2.0 
 #########
 
-INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/SALSA/05_kaki_SalsaScaff/
+INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/SALSA/05_kaki_SalsaScaff/
 QUERY=scaffolds_FINAL
 REFDIR=/nesi/project/ga03186/ref/
 REF=Kaki1_v2.3
