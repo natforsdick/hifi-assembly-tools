@@ -14,13 +14,15 @@
 ##############
 # ENVIRONMENT
 
-asm=/nesi/nobackup/ga03186/assemblies/kaki-hifi-asm/asm3-hic-hifiasm-p/SALSA/05_kaki_SalsaScaff/yahs/yahs-asm3_scaffolds_final.fa
+asm=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/SALSA/05_kaki_SalsaScaff/yahs/yahs-asm3_scaffolds_final.fa
 
 outdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/02-bwa/
 
+DATADIR=/nesi/project/ga03186/data/HiSeq-kaki-DNA1565/
 fq1=H01392-L1_S7_L005_R1_001.fastq
 fq2=H01392-L1_S7_L005_R2_001.fastq
 
+HIFIDIR=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
 HiFi=m54349U_210221_005741.fastq
 
 ###############
@@ -41,17 +43,17 @@ else
 echo BWA Index file found
 fi
 
-# unzip data if necessary
-if [ ! -e ${fq1} ] || [ ! -e ${fq2} ]; then
+if [ ! -e ${fq2} ] || [ ! -e ${HIFI} ]; then
+echo Copying data
+date
+cp $DATADIR${fq1}.gz ./
+cp $DATADIR${fq2}.gz ./
+cp ${HIFIDIR}${HiFi}.gz ./
+
 echo Unzipping fastq files at 
 date
 gunzip ${fq1}.gz
 gunzip ${fq2}.gz
-fi
-
-if [ ! -e ${HiFi} ]; then
-echo Unzipping fastq files at 
-date
 gunzip ${HiFi}.gz
 fi
 
