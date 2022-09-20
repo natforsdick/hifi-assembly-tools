@@ -16,13 +16,15 @@
 YAHSJUICE=/nesi/project/ga03186/scripts/Hi-C_scripts/yahs/juicer
 OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/SALSA/05_kaki_SalsaScaff/yahs/juice/
 JUICER=/nesi/nobackup/ga03186/juicer/scripts/juicer_tools.1.9.9_jcuda.0.8.jar
+REF_DIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/01-purge-dups/
+REF=01P-asm3-hic-hifiasm-p-p_ctg-purged.fa
 ##########
 
 cd $OUTDIR
 
 echo 'generating hic contact map'
 $YAHSJUICE pre -a -o out_JBAT ../yahs-asm3.bin ../yahs-asm3_scaffolds_final.agp \
-/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/asm3-hic-hifiasm-p.p_ctg.fa.fai > out_JBAT.log 2>&1
+${REF_DIR}${REF}.fai > out_JBAT.log 2>&1
 echo done step 1
 
 echo 'running juicer_tools pre'
