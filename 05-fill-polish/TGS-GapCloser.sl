@@ -11,13 +11,13 @@
 # TGS-GapCloser.sl
 # Nat Forsdick, 2022-08-18
 # Running TGS-GapCloser for kakī 
-
-TGSGapCloser=/nesi/project/ga03048/modules/TGS-GapCloser/TGS-GapCloser.sh
+# Takes 2 params: 1: full path to assembly, and 2: output directory.
+TGSGapCloser=/nesi/nobackup/ga03048/modules/TGS-GapCloser/TGS-GapCloser.sh
 HIFIDIR=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
 HIFI=m54349U_210221_005741
 HIFIIN=$HIFIDIR${HIFI}.fastq.gz
-ASM=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/SALSA/05_kaki_SalsaScaff/yahs/yahs-asm3_scaffolds_final.fa
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/04-fill-polish/pur-yahs/TGSGC/
+ASM=$1
+OUTDIR=$2
 
 ml purge
 ml Racon/1.5.0-GCC-11.3.0
