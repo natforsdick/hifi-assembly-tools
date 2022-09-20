@@ -3,8 +3,8 @@
 #SBATCH --job-name=minimap-HiFi
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=02:00:00 #45m
-#SBATCH --mem=26G # 6G
+#SBATCH --time=01:30:00 
+#SBATCH --mem=25G # 6G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
@@ -51,10 +51,10 @@ samtools view -bS -@ 12 ${REF}-pb.sam | samtools sort -@ 12 -o ${REF}-pb.bam
 
 echo getting stats
 samtools coverage ${REF}-pb.bam -o ${REF}-pb-cov.txt
-samtools stats -@ 12 ${REF}-pb.bam > ${REF}-bp-stats.txt
+samtools stats -@ 12 ${REF}-pb.bam > ${REF}-pb-stats.txt
 
 echo plotting stats
-plot-bamstats -p ${REF}-pb-stats ${REF}-bp-stats.txt
+plot-bamstats -p ${REF}-pb-stats ${REF}-pb-stats.txt
 
 #echo Collecting stats
 #$HOME/bin/k8 /nesi/project/ga03186/kaki-genome-assembly/QC/alignment/paftools.js stat ${REF}-pb.paf > ${REF}-pb-stat.out
