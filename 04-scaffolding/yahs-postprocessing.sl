@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --account=ga03186
 #SBATCH --job-name=make-juice-in # job name (shows up in the queue)
-#SBATCH --cpus-per-task=8
-#SBATCH --mem=32G
-#SBATCH --time=02:00:00 #Walltime (HH:MM:SS)
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=25G
+#SBATCH --time=01:30:00 #Walltime (HH:MM:SS)
 #SBATCH --mail-type=FAIL
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --output %x.%j.out # CHANGE number for new run
