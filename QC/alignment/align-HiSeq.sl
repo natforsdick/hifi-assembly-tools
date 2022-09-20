@@ -3,12 +3,12 @@
 #SBATCH --job-name=minimap-HiSeq
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=01:00:00
-#SBATCH --mem=6G
+#SBATCH --time=02:00:00
+#SBATCH --mem=16G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
-#SBATCH --cpus-per-task=24
+#SBATCH --cpus-per-task=32
 
 # align-HiSeq.sl
 # Align HiSeq reads to a reference using minimap
@@ -39,7 +39,19 @@ echo Aligning ${HISEQ} against ${REF}
 # To index reference genome the first time you run this - can then just call the index ref.mmi following this
 #minimap2 -t $SLURM_CPUS_PER_TASK -d ${REF}.mmi ${REFDIR}${REF}.fa
 
-# To map HiFi reads to assembly
-minimap2 -x sr -t $SLURM_CPUS_PER_TASK ${REF}.mmi ${HISEQDIR}${HISEQ}${R1} ${HISEQDIR}${HISEQ}${R2} > ${REF}-HiSeq.paf
+# To map HiSeq reads to assembly
+echo Aligning HiSeq
+minimap2 -x sr -t $SLURM_CPUS_PER_TASK ${REF}.mmi ${HISEQDIR}${HISEQ}${R1} ${HISEQDIR}${HISEQ}${R2} > ${REF}-HiSeq.sam
 
-$HOME/bin/k8 /nesi/project/ga03186/kaki-genome-assembly/QC/alignment/paftools.js stat ${REF}-HiSeq.paf > ${REF}-HiSeq-stat.out
+echo Converting to bam
+ml SAMtools/1.13-GCC-9.2.0
+samtools view -bS -@ 12 ${REF}-HiSeq.sam | samtools sort -@ 12 -o ${REF}-HiSeq.bam
+
+echo Getting stats
+samtools coverage ${REF}-HiSeq.bam -o ${REF}-HiSeq-cov.txt
+samtools stats -@ 12 ${REF}-HiSeq.bam -o ${REF}-HiSeq-stats.txt
+
+echo Plotting stats
+plot-bamstats -p ${REF}-HiSeq-stats ${REF}-HiSeq-stats.txt 
+
+#$HOME/bin/k8 /nesi/project/ga03186/kaki-genome-assembly/QC/alignment/paftools.js stat ${REF}-HiSeq.paf > ${REF}-HiSeq-stat.out
