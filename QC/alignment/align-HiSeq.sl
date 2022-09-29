@@ -3,8 +3,8 @@
 #SBATCH --job-name=minimap-HiSeq
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=02:00:00
-#SBATCH --mem=16G
+#SBATCH --time=01:30:00
+#SBATCH --mem=12G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
@@ -17,15 +17,15 @@
 #########
 # MODULES
 module purge
-module load minimap2/2.20-GCC-9.2.0 
+module load minimap2/2.20-GCC-9.2.0 SAMtools/1.13-GCC-9.2.0
 #########
 
 #########
 # PARAMS
 #########
 DIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/02-minimap/
-REFDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/01-purge-dups/
-REF=01P-asm3-hic-hifiasm-p-p_ctg-purged
+REFDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/SALSA/05_kaki_SalsaScaff/yahs/
+REF=yahs-asm3_scaffolds_final
 HISEQDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/genome-to-genome/results/trimmed/
 HISEQ=H01392-L1_S7_L005
 R1=_R1_001_val_1.fq.gz
@@ -37,14 +37,11 @@ cd $DIR
 echo Aligning ${HISEQ} against ${REF}
 
 # To index reference genome the first time you run this - can then just call the index ref.mmi following this
-#minimap2 -t $SLURM_CPUS_PER_TASK -d ${REF}.mmi ${REFDIR}${REF}.fa
+#minimap2 -t 4 -d ${REF}.mmi ${REFDIR}${REF}.fa
 
 # To map HiSeq reads to assembly
 echo Aligning HiSeq
-minimap2 -x sr -t $SLURM_CPUS_PER_TASK ${REF}.mmi ${HISEQDIR}${HISEQ}${R1} ${HISEQDIR}${HISEQ}${R2} > ${REF}-HiSeq.sam
-
-echo Converting to bam
-ml SAMtools/1.13-GCC-9.2.0
+minimap2 -ax sr -t 12 ${REF}.mmi ${HISEQDIR}${HISEQ}${R1} ${HISEQDIR}${HISEQ}${R2} > ${REF}-HiSeq.sam 
 samtools view -bS -@ 12 ${REF}-HiSeq.sam | samtools sort -@ 12 -o ${REF}-HiSeq.bam
 
 echo Getting stats
