@@ -1,9 +1,9 @@
 #!/bin/bash -e
 #SBATCH -A ga03186
 #SBATCH -J TGSGapClose
-#SBATCH --time=01:00:00
+#SBATCH --time=02:00:00
 #SBATCH --cpus-per-task=16
-#SBATCH --mem=42G
+#SBATCH --mem=50G
 #SBATCH --output %x.%j.out
 #SBATCH --error %x.%j.err
 #SBATCH --profile=task
@@ -42,7 +42,7 @@ $TGSGapCloser \
         --scaff $ASM \
         --reads ${HIFI}.fasta \
         --output ${OUTDIR}asm3-pri-pur-TGC \
-        --minmap_arg '-ax map-hifi' \
+        --minmap_arg '-x asm20' \
         --racon $RACON \
         --tgstype pb \
         --thread 32 \
