@@ -16,10 +16,10 @@
 
 ##########
 # PARAMS #
-asmdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur/
-fo= #w/out .fa suffix
+asmdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-yahs/01-TGSGC/
+fo=asm3-pur-yahs-TGC.scaff_seqs #w/out .fa suffix
 datadir=/nesi/project/ga03186/data/JF_PacBio-kaki-Steeves-Order260/processed/
-outdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm-hic-hifiasm-p/03-fill-polish/pur/pol/
+outdir=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-yahs/02-pol/
 ##########
 
 ##########
@@ -43,11 +43,11 @@ samtools sort -@4 -o ${fo}.bam
 
 date
 echo "samtools view -F0x900 ${fo}.bam | wtpoa-cns -t $SLURM_CPUS_PER_TASK \
--d ${asmdir}${fo}.fa -i - -fo ${fo}.cns.fa"
+-d ${asmdir}${fo}.fa -i - -fo ${fo}.pol-cns.fa"
 samtools view -F0x900 ${fo}.bam | wtpoa-cns -t $SLURM_CPUS_PER_TASK \
--d ${asmdir}${fo}.fa -i - -fo ${fo}.pol2.fa
+-d ${asmdir}${fo}.fa -i - -fo ${fo}.pol-cns.fa
 
 date
-echo "bwa index ${fo}.pol2.fa"
-bwa index ${fo}.pol2.fa
+echo "bwa index ${fo}.pol-cns.fa"
+bwa index ${fo}.pol-cns.fa
 
