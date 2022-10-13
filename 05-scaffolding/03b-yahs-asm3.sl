@@ -18,9 +18,9 @@
 YAHS='/nesi/project/ga03186/scripts/Hi-C_scripts/yahs/yahs'
 REF_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/02-purge-dups/'
 REF='01P-asm3-hic-hifiasm-p-p_ctg-purged.fa'
-IN_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pur/04_kaki_dedup/'
+IN_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pur/05-kaki-sorted/'
 IN_BAM='Kaki_HiCmapped_rep1-sorted.bed'
-OUT_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pur/05-kaki-yahs/'
+OUT_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pur/06-kaki-yahs/'
 
 # First need to sort bam
 cd $IN_DIR
