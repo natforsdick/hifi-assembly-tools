@@ -32,14 +32,14 @@ cd ${asmname}-merqury
 
 echo "$1 $2"
 
-if [ -L ${asm1} ]; then
-	echo "${asm1} found"
-	else
-		ln -s ${asmdir}${asm1} ${asm1}
-    		ln -s ${asmdir}${asm2} ${asm2}
-fi
+#if [ -L ${asm1} ]; then
+#	echo "${asm1} found"
+#	else
+#		ln -s ${asmdir}${asm1} ${asm1}
+#    		ln -s ${asmdir}${asm2} ${asm2}
+#fi
 
 module purge
 module load R/4.1.0-gimkl-2020a BEDTools/2.29.2-GCC-9.2.0 SAMtools/1.13-GCC-9.2.0
 
-$MERQURY/merqury.sh ../${genome}.meryl ${asm1} ${asmname}-merqury
+$MERQURY/merqury.sh ../${genome}.meryl ${asmdir}${asm1} ${asmname}-merqury
