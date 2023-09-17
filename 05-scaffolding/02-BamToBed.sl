@@ -18,10 +18,10 @@ module purge
 module load BEDTools/2.29.2-GCC-9.2.0
 
 LABEL='Kaki_HiCmapped'
-REP_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pur/04_kaki_dedup/'
-REF_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/02-purge-dups/'
-REF='01P-asm3-hic-hifiasm-p-p_ctg-purged.fa'
-OUT_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pur/05-kaki-sorted/'
+REP_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-pol/round-1/04_kaki_dedup/'
+REF_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-pol/round-1/'
+REF='01P-asm3-hic-hifiasm-p-p_ctg-purged.cns.fa'
+OUT_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-pol/round-1/05-kaki-sorted/'
 
 cd $REP_DIR
 mkdir /nesi/nobackup/ga03186/tmp-${SLURM_JOB_ID}

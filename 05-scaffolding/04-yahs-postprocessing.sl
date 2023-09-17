@@ -14,24 +14,24 @@
 ##########
 # PARAMS #
 YAHSJUICE=/nesi/project/ga03186/scripts/Hi-C_scripts/yahs/juicer
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/SALSA/05_kaki_SalsaScaff/yahs/juice/
-JUICER=/nesi/nobackup/ga03186/juicer/scripts/juicer_tools.1.9.9_jcuda.0.8.jar
-REF_DIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/01-purge-dups/
-REF=01-primary.genome.scf-purged.fa
+OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pur/06-kaki-yahs/
+JUICER=/nesi/nobackup/ga03048/juicer/scripts/juicer_tools.1.9.9_jcuda.0.8.jar
+REF_DIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/02-purge-dups/
+REF=01P-asm3-hic-hifiasm-p-p_ctg-purged.fa
 ##########
 
 cd $OUTDIR
 
 echo 'generating hic contact map'
-$YAHSJUICE pre -a -o out_JBAT ../yahs-asm5.bin ../yahs-asm5_scaffolds_final.agp \
-${REF_DIR}${REF}.fai > out_JBAT.log 2>&1
+$YAHSJUICE pre -a -o out_JBATNMC 01P-asm3-hic-hifiasm-p-p_ctg-purged-yahsNMC.bin 01P-asm3-hic-hifiasm-p-p_ctg-purged-yahsNMC_scaffolds_final.agp \
+${REF_DIR}${REF}.fai > out_JBATNMC.log 2>&1
 echo done step 1
 
 echo 'running juicer_tools pre'
-java -jar -Xmx26G $JUICER pre out_JBAT.txt out_JBAT.hic.part \
-	<(cat out_JBAT.log | grep PRE_C_SIZE | awk '{print $2" "$3}')
+java -jar -Xmx26G $JUICER pre out_JBATNMC.txt out_JBATNMC.hic.part \
+	<(cat out_JBATNMC.log | grep PRE_C_SIZE | awk '{print $2" "$3}')
 
-mv out_JBAT.hic.part out_JBAT.hic
+mv out_JBATNMC.hic.part out_JBATNMC.hic
 
 echo done step 2
 

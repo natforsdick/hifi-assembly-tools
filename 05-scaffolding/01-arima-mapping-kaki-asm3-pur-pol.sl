@@ -39,20 +39,20 @@ LABEL='Kaki_HiCmapped' #'overall_exp_name'
 BWA='bwa' #'/software/bwa/bwa-0.7.12/bwa'
 SAMTOOLS='samtools' #'/software/samtools/samtools-1.3.1/samtools'
 IN_DIR='/nesi/project/ga03048/data/hic/kaki-HiC' # '/path/to/gzipped/fastq/files'
-REF='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-yahs/02-pol/asm3-pur-yahs-TGC.scaff_seqs.pol-cns.fa' #'/path/to/reference_sequences/reference_sequeneces.fa'
+REF='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-pol/round-1/01P-asm3-hic-hifiasm-p-p_ctg-purged.cns.fa' #'/path/to/reference_sequences/reference_sequeneces.fa'
 FAIDX='$REF.fai'
-PREFIX='asm3-pur-yahs-TGC.scaff_seqs.pol-cns.fa' #'bwa_index_name'
-RAW_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pol/01_kaki_mapped' #'/path/to/write/out/bams'
-FILT_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pol/02_kaki_filtered' #'/path/to/write/out/filtered/bams'
+PREFIX='01P-asm3-hic-hifiasm-p-p_ctg-purged.cns.fa' #'bwa_index_name'
+RAW_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-pol/round-1/01_kaki_mapped' #'/path/to/write/out/bams'
+FILT_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-pol/round-1/02_kaki_filtered' #'/path/to/write/out/filtered/bams'
 FILTER='/nesi/project/ga03186/bin/ARIMA/filter_five_end.pl' #'/path/to/filter_five_end.pl'
 COMBINER='/nesi/project/ga03186/bin/ARIMA/two_read_bam_combiner.pl' #'/path/to/two_read_bam_combiner.pl'
 STATS='/nesi/project/ga03186/bin/ARIMA/get_stats.pl' #'/path/to/get_stats.pl'
 PICARD='/opt/nesi/mahuika/picard/2.21.8-Java-11.0.4/picard.jar'
 TMP_DIR="/nesi/nobackup/ga03186/tmp-${SLURM_JOB_ID}" #'/path/to/write/out/temporary/files'
-PAIR_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pol/03_kaki_paired' #'/path/to/write/out/paired/bams'
-REP_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pol/04_kaki_dedup' #'/path/to/where/you/want/deduplicated/files'
+PAIR_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-pol/round-1/03_kaki_paired' #'/path/to/write/out/paired/bams'
+REP_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-pol/round-1/04_kaki_dedup' #'/path/to/where/you/want/deduplicated/files'
 REP_LABEL=$LABEL\_rep1
-MERGE_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pol/05_kaki_merged' #'/path/to/final/merged/alignments/from/any/biological/replicates'
+#MERGE_DIR='/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pol/05_kaki_merged' #'/path/to/final/merged/alignments/from/any/biological/replicates'
 MAPQ_FILTER=10
 CPU=12
 
@@ -66,12 +66,12 @@ CPU=12
 [ -d $TMP_DIR ] || mkdir -p $TMP_DIR # !!Always leave this uncommented!!
 [ -d $PAIR_DIR ] || mkdir -p $PAIR_DIR
 [ -d $REP_DIR ] || mkdir -p $REP_DIR
-[ -d $MERGE_DIR ] || mkdir -p $MERGE_DIR
+#[ -d $MERGE_DIR ] || mkdir -p $MERGE_DIR
 
 # Steps 1-2 require 7 hrs, 20 cpu, 10 GB mem
 
 #echo "### Step 0: Index reference" # Run only once! Skip this step if you have already generated BWA index files
-cd /nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-yahs/02-pol/
+cd /nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/03-fill-polish/pur-pol/round-1/
 $BWA index -a bwtsw -p $PREFIX $REF
 
 cd $RAW_DIR
