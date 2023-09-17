@@ -3,7 +3,7 @@
 #SBATCH --job-name=minimap-aln
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=00:12:00
+#SBATCH --time=02:30:00
 #SBATCH --mem=32G #Used 26 for whole genomes
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
@@ -20,8 +20,8 @@ module purge
 module load minimap2/2.20-GCC-9.2.0 
 #########
 
-INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/SALSA/05_kaki_SalsaScaff/yahs/
-QUERY=yahs-asm3_scaffolds_final
+INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pur/06-kaki-yahs/
+QUERY=01P-asm3-hic-hifiasm-p-p_ctg-purged-yahs_scaffolds_final
 REFDIR=/nesi/project/ga03186/ref/
 REF=Kaki1_v2.3
 PAFTOOLS=/nesi/project/ga03186/kaki-genome-assembly/QC/alignment/paftools.js
