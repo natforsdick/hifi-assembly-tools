@@ -33,5 +33,6 @@ echo "$1 $2"
 
 module purge
 module load Merqury/1.3-Miniconda3
+export MERQURY=/opt/nesi/CS400_centos7_bdw/Merqury/1.3-Miniconda3/merqury/
 
 merqury.sh ../${genome}.meryl ${asmdir}${asm1} ${asmname}-merqury
