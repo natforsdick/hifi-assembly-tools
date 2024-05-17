@@ -2,24 +2,24 @@
 #SBATCH --account=ga03186
 #SBATCH --job-name=make-juice-in # job name (shows up in the queue)
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=24G
+#SBATCH --mem=26G
 #SBATCH --time=01:30:00 #Walltime (HH:MM:SS)
 #SBATCH --mail-type=FAIL
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --output %x.%j.out # CHANGE number for new run
-#SBATCH --error %x.%j.err
+#SBATCH --error %x.%j.err 
 
 # Generating .hic file for visualisation and manual curation
 
 ##########
 # PARAMS #
 YAHSJUICE=/nesi/project/ga03186/scripts/Hi-C_scripts/yahs/juicer
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/05-SALSA/pur/06-kaki-yahs/
+OUTDIR=/nesi/nobackup/ga03048/kaki-hifi-asm/asm3-hic-hifiasm-p/05-scaffolding/2023-12-18-asm3-pur-scaf/yahs/
 JUICER=/nesi/nobackup/ga03048/juicer/scripts/juicer_tools.1.9.9_jcuda.0.8.jar
-REF_DIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm3-hic-hifiasm-p/02-purge-dups/
+REF_DIR=/nesi/nobackup/ga03048/kaki-hifi-asm/asm3-hic-hifiasm-p/05-scaffolding/2023-12-18-asm3-pur-scaf/
 REF=01P-asm3-hic-hifiasm-p-p_ctg-purged.fa
 REFPRE=01P-asm3-hic-hifiasm-p-p_ctg-purged
-SCAF=01P-asm3-hic-hifiasm-p-p_ctg-purged-yahs
+SCAF=asm3-hic-hifiasm-p-p_ctg-purged_rep1
 ##########
 
 cd $OUTDIR
@@ -32,8 +32,8 @@ echo done step 1
 #(juicer pre ${SCAF}.bin ${SCAF}_scaffolds_final.agp ${REFDIR}${REF}.fai | sort -k2,2d -k6,6d -T ./ --parallel=8 -S32G | awk 'NF' > alignments_sorted.txt.part) && (mv alignments_sorted.txt.part alignments_sorted.txt)
 
 echo 'running juicer_tools pre'
-java -jar -Xmx24G $JUICER pre ${SCAF}_JBAT.txt ${SCAF}_JBAT.hic.part \
-        <(cat ${SCAF}_JBAT.log | grep PRE_C_SIZE | awk '{print $2" "$3}')
+java -jar -Xmx26G $JUICER pre ${SCAF}_JBAT.txt ${SCAF}_JBAT.hic.part \
+	<(cat ${SCAF}_JBAT.log | grep PRE_C_SIZE | awk '{print $2" "$3}')
 
 mv ${SCAF}_JBAT.hic.part ${SCAF}_JBAT.hic
 
