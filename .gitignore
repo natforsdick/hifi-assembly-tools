@@ -8,4 +8,5 @@
 agb_output/
 02-assembly/.ipynb_checkpoints/
 05-scaffolding/old-scripts/
+annotation/rmOutToGFF3custom
 *.r
